@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# 1. Load Model Terbaik [cite: 93]
+# 1. Load Model Terbaik 
 # Pastikan file .pkl berada satu folder dengan app.py saat dideploy
 model = joblib.load('model_churn_terbaik.pkl')
 
@@ -10,7 +10,7 @@ model = joblib.load('model_churn_terbaik.pkl')
 st.title("Telco Customer Churn Prediction")
 st.write("Aplikasi ini memprediksi apakah pelanggan berpotensi berhenti berlangganan (Churn) berdasarkan data profil mereka.")
 
-# 2. Form Input Fitur [cite: 94]
+# 2. Form Input Fitur 
 # Kita bagi menjadi dua kolom agar tampilan lebih rapi
 col1, col2 = st.columns(2)
 
@@ -45,7 +45,7 @@ with col2:
     monthly_charges = st.number_input("Biaya Bulanan (Monthly Charges)", min_value=0.0, value=50.0)
     total_charges = st.number_input("Total Biaya (Total Charges)", min_value=0.0, value=500.0)
 
-# 3. Proses Prediksi [cite: 95]
+# 3. Proses Prediksi 
 if st.button("Prediksi Churn"):
     # Menyusun data input ke dalam DataFrame sesuai urutan training
     input_data = pd.DataFrame({
@@ -75,7 +75,7 @@ if st.button("Prediksi Churn"):
         prediction = model.predict(input_data)[0]
         probability = model.predict_proba(input_data)[0][1]
 
-        # 4. Tampilan Hasil Prediksi [cite: 96]
+        # 4. Tampilan Hasil Prediksi 
         st.write("---")
         if prediction == 1:
             st.error(f"⚠️ **Hasil: CHURN (Berhenti Berlangganan)**")
